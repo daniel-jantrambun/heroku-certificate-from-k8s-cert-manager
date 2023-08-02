@@ -21,7 +21,7 @@ import (
 )
 
 var (
-	secretName    = flag.String("secret", "", "kubernetes secret")
+	secretName    = flag.String("secretName", "", "kubernetes secret")
 	namespace = flag.String("namespace", "", "kubernetes namespace")
 
 	herokuApp       = flag.String("herokuApp", "", "Heroku application name")
@@ -256,128 +256,5 @@ func getSecret(namespace string, secretName string, client *kubernetes.Clientset
 		err = fmt.Errorf("error getting secret: %v", err)
 		return nil, err
 	}
-	// fmt.Printf("secret name %v\n", secret.Name)
-	// fmt.Printf("secret type %v\n", secret.Type)
 	return secret, nil
 }
-
-// func listCertificates(crtClient *cmClient.Clientset) {
-// 	certNamespace := "istio-system"
-// 	cmClient := crtClient.CertmanagerV1().Certificates(certNamespace)
-// 	options := metav1.ListOptions{}
-
-// 	crtList, err := cmClient.List(context.TODO(), options)
-// 	if err != nil {
-// 		panic(err)
-// 	}
-// 	for _, cert := range crtList.Items {
-// 		fmt.Printf("cert name: %v\n", cert.Name)
-// 	}
-// }
-
-// func listServices(namespace string, clientset *kubernetes.Clientset) {
-// 	_, err := ListServices(namespace, clientset)
-// 	if err != nil {
-// 		fmt.Println(err.Error)
-// 		os.Exit(1)
-// 	}
-// }
-
-// func listSecrets(namespace string, clientset *kubernetes.Clientset) {
-// 	_, err := ListSecrets(namespace, clientset)
-// 	if err != nil {
-// 		fmt.Println(err.Error)
-// 		os.Exit(1)
-// 	}
-// }
-
-// func listNamespaces(clientset *kubernetes.Clientset) {
-// 	_, err := ListNamespaces(clientset)
-// 	if err != nil {
-// 		fmt.Println(err.Error)
-// 		os.Exit(1)
-// 	}
-// }
-
-// func listPods(namespace string, clientset *kubernetes.Clientset) {
-
-// 	_, err := ListPods(namespace, clientset)
-// 	if err != nil {
-// 		fmt.Println(err.Error)
-// 		os.Exit(1)
-// 	}
-// }
-
-// func ListPods(namespace string, client kubernetes.Interface) (*v1.PodList, error) {
-// 	fmt.Println("Get Kubernetes Pods")
-// 	pods, err := client.CoreV1().Pods(namespace).List(context.Background(), metav1.ListOptions{})
-// 	if err != nil {
-// 		err = fmt.Errorf("error getting pods: %v", err)
-// 		return nil, err
-// 	}
-// 	return pods, nil
-// }
-
-// func ListNamespaces(client kubernetes.Interface) (*v1.NamespaceList, error) {
-// 	fmt.Println("Get Kubernetes Namespaces")
-// 	namespaces, err := client.CoreV1().Namespaces().List(context.Background(), metav1.ListOptions{})
-// 	if err != nil {
-// 		err = fmt.Errorf("error getting namespaces: %v", err)
-// 		return nil, err
-// 	}
-// 	for _, namespace := range namespaces.Items {
-// 		fmt.Println(namespace.Name)
-// 	}
-// 	fmt.Printf("Total namespaces: %d\n", len(namespaces.Items))
-// 	return nil, nil
-// }
-
-// func ListCertificates(client kubernetes.Interface) (*v1.Certificate., error) {
-// 	fmt.Println("Get Kubernetes Namespaces")
-// 	namespaces, err := client.CoreV1().Namespaces().List(context.Background(), metav1.ListOptions{})
-// 	if err != nil {
-// 		err = fmt.Errorf("error getting namespaces: %v", err)
-// 		return nil, err
-// 	}
-// 	return namespaces, nil
-// }
-
-// func ListServices(namespace string, client kubernetes.Interface) (*v1.ServiceList, error) {
-// 	fmt.Println("Get Kubernetes Services")
-// 	services, err := client.CoreV1().Services(namespace).List(context.Background(), metav1.ListOptions{})
-// 	if err != nil {
-// 		err = fmt.Errorf("error getting services: %v", err)
-// 		return nil, err
-// 	}
-// 	for _, service := range services.Items {
-// 		fmt.Printf("Service name: %v\n", service.Name)
-// 	}
-// 	var message string
-// 	if namespace == "" {
-// 		message = "Total Services in all namespaces"
-// 	} else {
-// 		message = fmt.Sprintf("Total Services in namespace `%s`", namespace)
-// 	}
-// 	fmt.Printf("%s %d\n", message, len(services.Items))
-// 	return nil, nil
-// }
-
-// func ListSecrets(namespace string, client kubernetes.Interface) (*v1.ServiceList, error) {
-// 	fmt.Println("Get Kubernetes Secrets")
-// 	secrets, err := client.CoreV1().Secrets(namespace).List(context.Background(), metav1.ListOptions{})
-// 	if err != nil {
-// 		err = fmt.Errorf("error getting secrets: %v", err)
-// 		return nil, err
-// 	}
-// 	for _, secret := range secrets.Items {
-// 		fmt.Printf("Secret name: %v\n", secret.Name)
-// 	}
-// 	var message string
-// 	if namespace == "" {
-// 		message = "Total Secrets in all namespaces"
-// 	} else {
-// 		message = fmt.Sprintf("Total Secrets in namespace `%s`", namespace)
-// 	}
-// 	fmt.Printf("%s %d\n", message, len(secrets.Items))
-// 	return nil, nil
-// }
