@@ -38,7 +38,7 @@ func main() {
 
 	err := initVariables()
 	if err != nil {
-		fmt.Printf("error getting kubernetes certificates: %v\n", err)
+		fmt.Printf("error getting args: %v\n", err)
 		os.Exit(1)
 	}
 
